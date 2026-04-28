@@ -2255,6 +2255,10 @@ body.active .message-section {
   opacity: 0;
   font-weight: 300;
   letter-spacing: 1px;
+  text-wrap: balance; /* Distribuye las palabras de forma armónica */
+  overflow-wrap: break-word; /* Evita que palabras largas rompan el diseño */
+  word-break: normal;
+  hyphens: auto; /* Corta las palabras con guiones si es necesario */
 }
 
 .quote-reference {
@@ -2414,13 +2418,16 @@ body.active .message-section {
   }
 
   .text-cloud {
-    padding: 25px 20px;
+    padding: 30px 15px;
     width: 90%;
   }
 
   .text-cloud p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    letter-spacing: 0.2px; /* Reducimos aún más para evitar desbordes */
+    margin-bottom: 20px;
+    hyphens: none; /* En móvil a veces es mejor no cortar palabras cortas */
   }
 
   .creative-quote {
