@@ -11,9 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Al hacer clic en el corazón, iniciamos la página
   intro?.addEventListener('click', () => {
+    // Animación de explosión del corazón
+    const heart = intro.querySelector('.main-heart-3d');
+    if (heart) heart.classList.add('heart-clicked');
+
+    // Aseguramos que la página comience desde arriba para ver las flores
+    window.scrollTo(0, 0);
+
     // Agregamos la clase 'active' para mostrar y arrancar las animaciones
     body.classList.add('active');
     
+    // Habilitar el scroll después de que las animaciones de las flores terminen (aprox 7s)
+    setTimeout(() => {
+      body.classList.add('allow-scroll');
+    }, 7000);
+
     // Reproducir el archivo local con entrada suave de volumen
     if (bgMusic) {
       bgMusic.play().then(() => {
@@ -32,9 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    intro.style.opacity = '0';
     setTimeout(() => {
-      intro.remove();
-    }, 500); // Espera a que termine el desvanecimiento
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.remove();
+      }, 500);
+    }, 600); // Esperamos a que la animación del corazón esté casi lista
+  });
+
+  // Efecto de paralaje para la sección de mensaje
+  document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+    
+    document.querySelectorAll('.f-icon, .sparkle').forEach(el => {
+      el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
   });
 });
