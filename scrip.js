@@ -52,6 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 600); // Esperamos a que la animación del corazón esté casi lista
   });
 
+
+  // Lógica para el botón final "¿lo mejor?"
+  const finalBtn = document.getElementById('final-btn');
+  const finalMsg = document.getElementById('final-message');
+
+  finalBtn?.addEventListener('click', () => {
+    finalBtn.style.opacity = '0';
+    setTimeout(() => {
+      finalBtn.style.display = 'none';
+      if (finalMsg) finalMsg.style.display = 'block';
+    }, 400);
+  });
+
   // Efecto de paralaje para la sección de mensaje
   document.addEventListener('mousemove', (e) => {
     const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
